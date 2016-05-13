@@ -12,7 +12,7 @@ namespace UWPProject_Curriculum
         private int Semester;
         private int Grade;
         private int Week;
-        public static SQLiteConnection conn;
+        public SQLiteConnection conn;
         public Database()
         {
             var conn = new SQLiteConnection("Curriculum.db");
@@ -30,16 +30,28 @@ namespace UWPProject_Curriculum
                 statement.Step();
             }
         }
+
         public void deleteCourse(Course course)
         {
-            using (var statement = conn.Prepare("DELETE FROM Course WHERE Name = ? AND Room = ? AND Semester = ?"))
+            using (var statement = conn.Prepare("DELETE FROM Course WHERE Name = ? AND Room = ? AND Semester = ? AND Grade = ?"))
             {
                 statement.Bind(1, course.name);
                 statement.Bind(2, course.room);
                 statement.Bind(3, Semester);
+                statement.Bind(4, Grade);
                 statement.Step();
             }
         }
+
+        public void deleteSemester()
+        {
+            using (var statement = conn.Prepare("DELETE FROM Course WHERE Semester = ?"))
+            {
+                statement.Bind(1, Semester);
+                statement.Step();
+            }
+        }
+
         public void addCourse(Course course)
         {
             using (var statement = conn.Prepare("INSERT INTO Course (Name, Room, StartWeek, WeekLast, Grade, Semester, WeekNum, Day) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"))
@@ -53,6 +65,28 @@ namespace UWPProject_Curriculum
                 statement.Bind(7, Week);
                 statement.Bind(8, course.lesson);
                 statement.Step();
+            }
+        }
+
+        public List<Course> selectCourse()
+        {
+            List<Course> list = new List<Course>();
+            using (var statement = conn.Prepare("SELECT * FROM Course WHERE Semester = ? AND Grade = ?"))
+            {
+                statement.Bind(1, Semester);
+                statement.Bind(2, Grade);
+                while (statement.Step() != SQLiteResult.DONE)
+                {
+                    Course course = new Course();
+                    course.name = (string)statement[0];
+                    course.room = (string)statement[1];
+                    course.startWeek = (int)statement[2];
+                    course.weeksLast = (int)statement[3];
+                    string str = (string)statement[7];
+                    course.lesson = str.ToCharArray();
+                    list.Add(course);
+                }
+                return list;
             }
         }
     }
