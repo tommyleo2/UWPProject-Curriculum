@@ -1,0 +1,130 @@
+﻿<Page
+    x:Class="UWPProject_Curriculum.CurrentCurriculum"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPProject_Curriculum"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  Width="auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--<TextBlock x:Name="Current_Week" Grid.Column="1" Text="Week 1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="40"/>-->
+                    <Button x:Name="Current_Week" Content="第 1 周" Grid.Column="0" Opacity="1" FontSize ="20" Width="90" Height="45" BorderThickness="2" HorizontalAlignment="Center">
+                        <Button.Flyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="第 1 周" Click="Change_Now_Week1"/>
+                                <MenuFlyoutItem Text="第 2 周" Click="Change_Now_Week2"/>
+                                <MenuFlyoutItem Text="第 3 周" Click="Change_Now_Week3"/>
+                                <MenuFlyoutItem Text="第 4 周" Click="Change_Now_Week4"/>
+                                <MenuFlyoutItem Text="第 5 周" Click="Change_Now_Week5"/>
+                                <MenuFlyoutItem Text="第 6 周" Click="Change_Now_Week6"/>
+                                <MenuFlyoutItem Text="第 7 周" Click="Change_Now_Week7"/>
+                                <MenuFlyoutItem Text="第 8 周" Click="Change_Now_Week8"/>
+                                <MenuFlyoutItem Text="第 9 周" Click="Change_Now_Week9"/>
+                                <MenuFlyoutItem Text="第 10 周" Click="Change_Now_Week10"/>
+                                <MenuFlyoutItem Text="第 11 周" Click="Change_Now_Week11"/>
+                                <MenuFlyoutItem Text="第 12 周" Click="Change_Now_Week12"/>
+                                <MenuFlyoutItem Text="第 13 周" Click="Change_Now_Week13"/>
+                                <MenuFlyoutItem Text="第 14 周" Click="Change_Now_Week14"/>
+                                <MenuFlyoutItem Text="第 15 周" Click="Change_Now_Week15"/>
+                            </MenuFlyout>
+                        </Button.Flyout>
+                    </Button>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="12*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="星期一" FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" Text="星期二" FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Column="2" Text="星期三" FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Column="3" Text="星期四" FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Column="4" Text="星期五" FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Column="5" Text="星期六" FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Column="6" Text="星期天" FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+        <ScrollViewer Grid.Row="1">
+            <Grid Height="1120">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="12*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="1---8:00~8:45" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+                    <TextBlock Grid.Row="1" Text="2---8:55~9:40" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+                    <TextBlock Grid.Row="2" Text="3---9:50~10:35" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+                    <TextBlock Grid.Row="3" Text="4---10:45~11:30" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+                    <TextBlock Grid.Row="4" Text="5---11:40~12:25" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+                    <TextBlock Grid.Row="5" Text="6---12:35~13:20" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+                    <TextBlock Grid.Row="6" Text="7---13:30~14:15" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+                    <TextBlock Grid.Row="7" Text="8---14:25~15:10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+                    <TextBlock Grid.Row="8" Text="9---15:20~16:05" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+                    <TextBlock Grid.Row="9" Text="10---16:15~17:00" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+                    <TextBlock Grid.Row="10" Text="11---17:10~17:55" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+                    <TextBlock Grid.Row="11" Text="12---18:05~18:50" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+                    <TextBlock Grid.Row="12" Text="13---19:00~19:45" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+                    <TextBlock Grid.Row="13" Text="14---19:55~20:40" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+                    <TextBlock Grid.Row="14" Text="15---20:50~21:35" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13"/>
+                </Grid>
+                <Grid>
+
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Grid.Column="0" Icon="Next" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="Select_Term"/>
+            <AppBarButton Grid.Column="1" Icon="Add" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="Add_Class"/>
+            <AppBarButton Grid.Column="2" Icon="Delete" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="deleteTerm"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>
