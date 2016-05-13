@@ -13,8 +13,11 @@ namespace UWPProject_Curriculum
         private int Grade;
         private int Week;
         public SQLiteConnection conn;
-        public Database()
+        public Database(int semester, int grade, int week)
         {
+            Semester = semester;
+            Grade = grade;
+            Week = week;
             var conn = new SQLiteConnection("Curriculum.db");
             string sql = @"CREATE TABLE IF NOT EXISTS
                                 Course(Name VARCHAR(140) NOT NULL,
