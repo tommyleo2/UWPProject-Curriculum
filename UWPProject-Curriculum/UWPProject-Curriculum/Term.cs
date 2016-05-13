@@ -16,12 +16,12 @@ namespace UWPProject_Curriculum {
         }
         public void deleteCourse(Course course) {
             courseList.Remove(course);
-            db.deleteCourse(course, semester);
+            db.deleteCourse(course);
         }
         public void modifyCourse(Course course, Course newCourse) {
             courseList.Remove(course);
             courseList.Add(newCourse);
-            db.modifyCourse(course, newCourse);
+            db.updateCourse(course, newCourse);
         }
         public int grade { set; get; }
         public int semester { set; get; }  //  semester in a year

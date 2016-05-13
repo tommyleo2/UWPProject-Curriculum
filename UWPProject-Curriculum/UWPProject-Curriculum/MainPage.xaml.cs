@@ -52,11 +52,6 @@ namespace UWPProject_Curriculum
             course.room = "C403";
             course.startWeek = 1;
             course.weeksLast = 18;
-            CourseTime courseTime = new CourseTime();
-            courseTime.start = 3;
-            courseTime.lastTime = 3;
-            List<CourseTime> list = (List<CourseTime>)(course.day[5]);
-            list.Add(courseTime);
             term.courseList.Add(course);
         }
 
