@@ -9,14 +9,14 @@ namespace UWPProject_Curriculum {
     class Course {
         public Course() {
             lesson = new char[120];
-            for (int i = 0; i < 119; i++)
+            for (int i = 0; i < 105; i++)
                 lesson[i] = '0';
-            lesson[119] = '\0';
+            lesson[105] = '\0';
         }
         public string name { set; get; }
         public string room { set; get; }
-        public int startWeek { set; get; }
-        public int weeksLast { set; get; }
+        public Int64 startWeek { set; get; }
+        public Int64 weeksLast { set; get; }
         public char[] lesson { set; get; }
     }
 }

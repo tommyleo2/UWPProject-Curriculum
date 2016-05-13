@@ -25,9 +25,38 @@ namespace UWPProject_Curriculum
         public MainPage()
         {
             this.InitializeComponent();
-            term = new Term();
             createDebugTerm();
+            //updateDebugTerm();
+            //deleteDebugCourse();
+            deleteDebugTerm();
             displayDebugTerm();
+        }
+
+        private void deleteDebugTerm() {
+            term.deleteTerm();
+        }
+
+        private void deleteDebugCourse() {
+            Course newCourse = new Course();
+            newCourse.name = "S";
+            newCourse.room = "R304";
+            newCourse.startWeek = 2;
+            newCourse.weeksLast = 18;
+            term.deleteCourse(newCourse);
+        }
+
+        private void updateDebugTerm() {
+            Course course = new Course();
+            course.name = "Computer Organization Principle";
+            course.room = "C403";
+            course.startWeek = 1;
+            course.weeksLast = 18;
+            Course newCourse = new Course();
+            newCourse.name = "S";
+            newCourse.room = "R304";
+            newCourse.startWeek = 2;
+            newCourse.weeksLast = 18;
+            term.updateCourse(course, newCourse);
         }
 
         private Term term { set; get; }
@@ -39,20 +68,27 @@ namespace UWPProject_Curriculum
                 debugInfo += "Room: " + course.room + "\n";
                 debugInfo += "Start Week: " + course.startWeek + "\n";
                 debugInfo += "Weeks :" + course.weeksLast + "\n";
-                
+                debugInfo += "Lesson: ";
+                for (int i = 0; i < 105; i++) {
+                    if (i % 15 == 0) {
+                        debugInfo += "\n";
+                    }
+                    debugInfo += course.lesson[i] + " ";
+                }
+                debugInfo += "\n";
             }
             debugTextBlock.Text = debugInfo;
         }
         private void createDebugTerm() {
-            term.grade = 2;
-            term.semester = 2;
-            term.weekNum = 18;
+            term = new Term(2, 2, 18);
+            /*
             Course course = new Course();
             course.name = "Computer Organization Principle";
             course.room = "C403";
             course.startWeek = 1;
             course.weeksLast = 18;
-            term.courseList.Add(course);
+            term.addCourse(course);
+            */
         }
 
     }

@@ -13,12 +13,12 @@ namespace UWPProject_Curriculum
         private int Grade;
         private int Week;
         public SQLiteConnection conn;
-        public Database(int semester, int grade, int week)
+        public Database(int grade, int semester, int week)
         {
             Semester = semester;
             Grade = grade;
             Week = week;
-            var conn = new SQLiteConnection("Curriculum.db");
+            conn = new SQLiteConnection("Curriculum.db");
             string sql = @"CREATE TABLE IF NOT EXISTS
                                 Course(Name VARCHAR(140) NOT NULL,
                                        Room VARCHAR(140),
@@ -27,7 +27,7 @@ namespace UWPProject_Curriculum
                                        Grade INTEGER,
                                        Semester INTEGER,
                                        WeekNum INTEGER,
-                                       Day VARCHAR(120));";
+                                       Day VARCHAR(106));";
             using (var statement = conn.Prepare(sql))
             {
                 statement.Step();
@@ -60,6 +60,7 @@ namespace UWPProject_Curriculum
         {
             using (var statement = conn.Prepare("INSERT INTO Course (Name, Room, StartWeek, WeekLast, Grade, Semester, WeekNum, Day) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"))
             {
+                string day = new string(course.lesson);
                 statement.Bind(1, course.name);
                 statement.Bind(2, course.room);
                 statement.Bind(3, course.startWeek);
@@ -67,25 +68,27 @@ namespace UWPProject_Curriculum
                 statement.Bind(5, Grade);
                 statement.Bind(6, Semester);
                 statement.Bind(7, Week);
-                statement.Bind(8, course.lesson);
+                statement.Bind(8, day);
                 statement.Step();
             }
         }
 
         public void updateCourse(Course course, Course newCourse) {
-            using (var statement = conn.Prepare(@"UPDATE Course SET Name = ?, Room = ?, StartWeek = ? WeekLast = ?, Day = ?
-                                                  WHERE Course SET Name = ?, Room = ?, StartWeek = ? WeekLast = ?, Day = ?")) {
+            using (var statement = conn.Prepare(@"UPDATE Course SET Name = ?, Room = ?, StartWeek = ?, WeekLast = ?, Day = ?
+                                                  WHERE Name = ? AND Room = ? AND StartWeek = ? AND WeekLast = ? AND Day = ?")) {
+                string courseLesson = new string(course.lesson);
+                string newCourseLesson = new string(newCourse.lesson);
                 statement.Bind(1, newCourse.name);
                 statement.Bind(2, newCourse.room);
                 statement.Bind(3, newCourse.startWeek);
                 statement.Bind(4, newCourse.weeksLast);
-                statement.Bind(5, newCourse.lesson);
+                statement.Bind(5, newCourseLesson);
 
                 statement.Bind(6, course.name);
                 statement.Bind(7, course.room);
                 statement.Bind(8, course.startWeek);
                 statement.Bind(9, course.weeksLast);
-                statement.Bind(10, course.lesson);
+                statement.Bind(10, courseLesson);
                 statement.Step();
             }
         }
@@ -102,8 +105,8 @@ namespace UWPProject_Curriculum
                     Course course = new Course();
                     course.name = (string)statement[0];
                     course.room = (string)statement[1];
-                    course.startWeek = (int)statement[2];
-                    course.weeksLast = (int)statement[3];
+                    course.startWeek = (Int64)statement[2];
+                    course.weeksLast = (Int64)statement[3];
                     string str = (string)statement[7];
                     course.lesson = str.ToCharArray();
                     list.Add(course);
