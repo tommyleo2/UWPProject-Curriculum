@@ -39,15 +39,7 @@ namespace UWPProject_Curriculum
                 debugInfo += "Room: " + course.room + "\n";
                 debugInfo += "Start Week: " + course.startWeek + "\n";
                 debugInfo += "Weeks :" + course.weeksLast + "\n";
-                for (var i = 1; i < 8; i++) {
-                    if (course.day[i] != null) {
-                        debugInfo += "Day " + i + " ";
-                        List<CourseTime> list = (List<CourseTime>)course.day[i];
-                        foreach (CourseTime courseTime in list) {
-                            debugInfo += "start: " + courseTime.start + " last: " + courseTime.lastTime + "\n";
-                        }
-                    }
-                }
+                
             }
             debugTextBlock.Text = debugInfo;
         }
@@ -55,7 +47,6 @@ namespace UWPProject_Curriculum
             term.grade = 2;
             term.semester = 2;
             term.weekNum = 18;
-            term.startTime = new DateTime(2016, 2, 23);
             Course course = new Course();
             course.name = "Computer Organization Principle";
             course.room = "C403";

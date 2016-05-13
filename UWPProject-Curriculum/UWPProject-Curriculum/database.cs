@@ -7,10 +7,10 @@ using SQLitePCL;
 
 namespace UWPProject_Curriculum
 {
-    class database
+    class Database
     {
         public static SQLiteConnection conn;
-        public database()
+        public Database(int grade, int semester, int weekNum)
         {
             conn = new SQLiteConnection("Curriculum.db");
             string sql = @"CREATE TABLE IF NOT EXISTS
@@ -27,5 +27,20 @@ namespace UWPProject_Curriculum
                 statement.Step();
             }
         }
+        public void addCourse(Course course) {
+
+        }
+        public void deleteCourse(Course course, int Semester) {
+
+        }
+        public void modifyCourse(Course course, Course newCourse) {
+
+        }
+        public Term getTerm(int grade, int semester) {
+            Term term = new Term();
+
+            return term;
+        }
+
     }
 }

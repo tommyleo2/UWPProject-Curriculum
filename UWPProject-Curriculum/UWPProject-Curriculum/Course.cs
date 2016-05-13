@@ -20,7 +20,6 @@ namespace UWPProject_Curriculum {
         public int startWeek { set; get; }
         public int weeksLast { set; get; }
         public ArrayList day { set; get; }
-
     }
     struct CourseTime {
         public int start { set; get; }
