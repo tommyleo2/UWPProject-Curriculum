@@ -25,6 +25,40 @@ namespace UWPProject_Curriculum
         public MainPage()
         {
             this.InitializeComponent();
+            term = new Term();
+            createDebugTerm();
+            displayDebugTerm();
         }
+
+        private Term term { set; get; }
+
+        private void displayDebugTerm() {
+            string debugInfo = "";
+            foreach (Course course in term.courseList) {
+                debugInfo += "Name: " + course.name + "\n";
+                debugInfo += "Room: " + course.room + "\n";
+                debugInfo += "Start Week: " + course.startWeek + "\n";
+                debugInfo += "Weeks :" + course.weeksLast + "\n";
+                
+            }
+            debugTextBlock.Text = debugInfo;
+        }
+        private void createDebugTerm() {
+            term.grade = 2;
+            term.semester = 2;
+            term.weekNum = 18;
+            Course course = new Course();
+            course.name = "Computer Organization Principle";
+            course.room = "C403";
+            course.startWeek = 1;
+            course.weeksLast = 18;
+            CourseTime courseTime = new CourseTime();
+            courseTime.start = 3;
+            courseTime.lastTime = 3;
+            List<CourseTime> list = (List<CourseTime>)(course.day[5]);
+            list.Add(courseTime);
+            term.courseList.Add(course);
+        }
+
     }
 }
