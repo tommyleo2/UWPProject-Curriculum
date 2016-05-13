@@ -45,9 +45,10 @@ namespace UWPProject_Curriculum
 
         public void deleteSemester()
         {
-            using (var statement = conn.Prepare("DELETE FROM Course WHERE Semester = ?"))
+            using (var statement = conn.Prepare("DELETE FROM Course WHERE Semester = ? AND Grade = ?"))
             {
                 statement.Bind(1, Semester);
+                statement.Bind(2, Grade);
                 statement.Step();
             }
         }
