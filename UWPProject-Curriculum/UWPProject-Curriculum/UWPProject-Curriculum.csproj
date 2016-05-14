@@ -93,6 +93,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Assets\bg1.jpg" />
     <Content Include="tile.xml" />
     <None Include="project.json" />
   </ItemGroup>
