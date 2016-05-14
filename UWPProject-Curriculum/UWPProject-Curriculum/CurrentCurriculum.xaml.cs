@@ -141,9 +141,9 @@ namespace UWPProject_Curriculum {
 
         private async void deleteTerm(object sender, RoutedEventArgs e)
         {
-            var confirm = new MessageDialog("Delete current term?");
-            confirm.Commands.Add(new UICommand("No"));
-            confirm.Commands.Add(new UICommand("Yes", new UICommandInvokedHandler(this.Select_Term_After_Delete)));
+            var confirm = new MessageDialog("是否删除当前学期?");
+            confirm.Commands.Add(new UICommand("否"));
+            confirm.Commands.Add(new UICommand("是", new UICommandInvokedHandler(this.Select_Term_After_Delete)));
             confirm.DefaultCommandIndex = 1;
             confirm.CancelCommandIndex = 0;
             await confirm.ShowAsync();

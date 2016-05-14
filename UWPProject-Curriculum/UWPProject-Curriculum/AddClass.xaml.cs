@@ -35,7 +35,7 @@ namespace UWPProject_Curriculum
             term = (Term)e.Parameter;
             name.Text = "";
             room.Text = "";
-            startTime.Text = "";
+            startWeek.Text = "";
             weeksLast.Text = "";
             WeekDay.Content = "星期一";
             startTime.Text = "";
