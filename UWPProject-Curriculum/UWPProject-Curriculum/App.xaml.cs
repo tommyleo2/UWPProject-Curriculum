@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.Data.Xml.Dom;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -16,6 +17,8 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using SQLitePCL;
 using Windows.Storage;
+using System.Xml;
+using Windows.UI.Notifications;
 
 namespace UWPProject_Curriculum
 {
@@ -78,6 +81,14 @@ namespace UWPProject_Curriculum
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
+                    Windows.Data.Xml.Dom.XmlDocument T = new Windows.Data.Xml.Dom.XmlDocument();
+                    T.LoadXml(File.ReadAllText("tile.xml"));
+                    var tileNotification = new TileNotification(T);
+                    var elements = T.GetElementsByTagName("text");
+                    var updator = TileUpdateManager.CreateTileUpdaterForApplication();
+                    updator.Update(tileNotification);
+
+
                     var composite = new ApplicationDataCompositeValue();
                     if (ApplicationData.Current.LocalSettings.Values.ContainsKey("TheWorkInProgress"))
                     {

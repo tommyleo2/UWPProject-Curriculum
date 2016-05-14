@@ -189,5 +189,10 @@ namespace UWPProject_Curriculum
         {
             Frame.Navigate(typeof(CurrentCurriculum), term);
         }
+
+        private void WeekDay_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
