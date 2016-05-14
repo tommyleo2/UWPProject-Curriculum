@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -52,6 +53,8 @@ namespace UWPProject_Curriculum {
                         courseBlock.Margin = new Thickness(day * width, (startTime) * height, 0, 0);
                         courseBlock.VerticalAlignment = VerticalAlignment.Top;
                         courseBlock.HorizontalAlignment = HorizontalAlignment.Left;
+                        Color color = Colors.LightSkyBlue;
+                        courseBlock.Background = new SolidColorBrush(color);
                         container.Children.Add(courseBlock);
                     }
                 }
@@ -65,68 +68,41 @@ namespace UWPProject_Curriculum {
             int div = content.IndexOf("\n课室： ");
             course.name = content.Substring(0, div);
             course.room = content.Substring(div + 5);
-            //Frame.Navigate(typeof())
+            CourseAndTerm ct = new CourseAndTerm(course, term);
+            Frame.Navigate(typeof(ClassContent), ct);
         }
 
-        private void Change_Now_Week1(object sender, RoutedEventArgs e)
+        private void ChangeCurrentWeek(object sender, RoutedEventArgs e)
         {
-            Current_Week.Content = "第 1 周";
-        }
-        private void Change_Now_Week2(object sender, RoutedEventArgs e)
-        {
-            Current_Week.Content = "第 2 周";
-        }
-        private void Change_Now_Week3(object sender, RoutedEventArgs e)
-        {
-            Current_Week.Content = "第 3 周";
-        }
-        private void Change_Now_Week4(object sender, RoutedEventArgs e)
-        {
-            Current_Week.Content = "第 4 周";
-        }
-        private void Change_Now_Week5(object sender, RoutedEventArgs e)
-        {
-            Current_Week.Content = "第 5 周";
-        }
-        private void Change_Now_Week6(object sender, RoutedEventArgs e)
-        {
-            Current_Week.Content = "第 6 周";
-        }
-        private void Change_Now_Week7(object sender, RoutedEventArgs e)
-        {
-            Current_Week.Content = "第 7 周";
-        }
-        private void Change_Now_Week8(object sender, RoutedEventArgs e)
-        {
-            Current_Week.Content = "第 8 周";
-        }
-        private void Change_Now_Week9(object sender, RoutedEventArgs e)
-        {
-            Current_Week.Content = "第 9 周";
-        }
-        private void Change_Now_Week10(object sender, RoutedEventArgs e)
-        {
-            Current_Week.Content = "第 10 周";
-        }
-        private void Change_Now_Week11(object sender, RoutedEventArgs e)
-        {
-            Current_Week.Content = "第 11 周";
-        }
-        private void Change_Now_Week12(object sender, RoutedEventArgs e)
-        {
-            Current_Week.Content = "第 12 周";
-        }
-        private void Change_Now_Week13(object sender, RoutedEventArgs e)
-        {
-            Current_Week.Content = "第 13 周";
-        }
-        private void Change_Now_Week14(object sender, RoutedEventArgs e)
-        {
-            Current_Week.Content = "第 14 周";
-        }
-        private void Change_Now_Week15(object sender, RoutedEventArgs e)
-        {
-            Current_Week.Content = "第 15 周";
+            MenuFlyoutItem item = sender as MenuFlyoutItem;
+            int currentWeek = Convert.ToInt32(item.Text.Substring(2, 2));
+            Current_Week.Content = "第 " + item.Text.Substring(2, 2);
+            if (currentWeek > 9) {
+                Current_Week.Content += " 周";
+            } else {
+                Current_Week.Content += "周";
+            }
+            foreach (Course course in term.courseList) {
+                if (currentWeek < course.startWeek || currentWeek > course.startWeek + course.weeksLast) {
+                    string query = course.name + "\n课室： " + course.room;
+                    foreach (Button button in container.Children) {
+                        if ((string)(button.Content) == query) {
+                            Color color = Colors.DarkGray;
+                            button.Background = new SolidColorBrush(color);
+                        }
+                        break;
+                    }
+                } else {
+                    string query = course.name + "\n课室： " + course.room;
+                    foreach (Button button in container.Children) {
+                        if ((string)(button.Content) == query) {
+                            Color color = Colors.LightSkyBlue;
+                            button.Background = new SolidColorBrush(color);
+                        }
+                        break;
+                    }
+                }
+            }
         }
 
         private void Select_Term(object sender, RoutedEventArgs e)
@@ -157,5 +133,13 @@ namespace UWPProject_Curriculum {
 
         private Term term { get; set; }
         private int currentWeek { get; set; }
+    }
+    class CourseAndTerm {
+        public CourseAndTerm(Course c, Term t) {
+            course = c;
+            term = t;
+        }
+        public Course course { set; get; }
+        public Term term { set; get; }
     }
 }

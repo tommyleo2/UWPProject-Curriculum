@@ -34,6 +34,46 @@ namespace UWPProject_Curriculum
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            CourseAndTerm ct = e.Parameter as CourseAndTerm;
+            course = ct.course;
+            term = ct.term;
+            name.Text = course.name;
+            room.Text = course.room;
+            startWeek.Text = course.startWeek.ToString();
+            weeksLast.Text = course.weeksLast.ToString();
+            int count = 0;
+            int last = 0;
+            for (int i = 0; i < 105; i++) {
+                if (course.lesson[i] == '1') {
+                    last++;
+                }
+                count++;
+            }
+            switch (count / 15) {
+                case 0:
+                    WeekDay.Content = "星期一";
+                    break;
+                case 1:
+                    WeekDay.Content = "星期二";
+                    break;
+                case 2:
+                    WeekDay.Content = "星期三";
+                    break;
+                case 3:
+                    WeekDay.Content = "星期四";
+                    break;
+                case 4:
+                    WeekDay.Content = "星期五";
+                    break;
+                case 5:
+                    WeekDay.Content = "星期六";
+                    break;
+                case 6:
+                    WeekDay.Content = "星期天";
+                    break;
+            }
+            startTime.Text = (count % 15 + 1).ToString();
+            endTime.Text = last.ToString();
         }
 
         private void modifyButton_Click(object sender, RoutedEventArgs e)
@@ -137,7 +177,7 @@ namespace UWPProject_Curriculum
 
         private void MenuFlyoutItem_Click_6(object sender, RoutedEventArgs e)
         {
-            WeekDay.Content = "星期日";
+            WeekDay.Content = "星期天";
         }
 
         private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)

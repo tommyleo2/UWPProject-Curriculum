@@ -26,21 +26,21 @@
                     <Button x:Name="Current_Week" Content="第 1 周" Grid.Column="0" Opacity="1" FontSize="40" HorizontalAlignment="Center" BorderThickness="3" Margin="0">
                         <Button.Flyout>
                             <MenuFlyout>
-                                <MenuFlyoutItem Text="第 1 周" Click="Change_Now_Week1"/>
-                                <MenuFlyoutItem Text="第 2 周" Click="Change_Now_Week2"/>
-                                <MenuFlyoutItem Text="第 3 周" Click="Change_Now_Week3"/>
-                                <MenuFlyoutItem Text="第 4 周" Click="Change_Now_Week4"/>
-                                <MenuFlyoutItem Text="第 5 周" Click="Change_Now_Week5"/>
-                                <MenuFlyoutItem Text="第 6 周" Click="Change_Now_Week6"/>
-                                <MenuFlyoutItem Text="第 7 周" Click="Change_Now_Week7"/>
-                                <MenuFlyoutItem Text="第 8 周" Click="Change_Now_Week8"/>
-                                <MenuFlyoutItem Text="第 9 周" Click="Change_Now_Week9"/>
-                                <MenuFlyoutItem Text="第 10 周" Click="Change_Now_Week10"/>
-                                <MenuFlyoutItem Text="第 11 周" Click="Change_Now_Week11"/>
-                                <MenuFlyoutItem Text="第 12 周" Click="Change_Now_Week12"/>
-                                <MenuFlyoutItem Text="第 13 周" Click="Change_Now_Week13"/>
-                                <MenuFlyoutItem Text="第 14 周" Click="Change_Now_Week14"/>
-                                <MenuFlyoutItem Text="第 15 周" Click="Change_Now_Week15"/>
+                                <MenuFlyoutItem x:Name="week1" Text="第 1 周" Click="ChangeCurrentWeek"/>
+                                <MenuFlyoutItem x:Name="week2" Text="第 2 周" Click="ChangeCurrentWeek"/>
+                                <MenuFlyoutItem x:Name="week3" Text="第 3 周" Click="ChangeCurrentWeek"/>
+                                <MenuFlyoutItem x:Name="week4" Text="第 4 周" Click="ChangeCurrentWeek"/>
+                                <MenuFlyoutItem x:Name="week5" Text="第 5 周" Click="ChangeCurrentWeek"/>
+                                <MenuFlyoutItem x:Name="week6" Text="第 6 周" Click="ChangeCurrentWeek"/>
+                                <MenuFlyoutItem x:Name="week7" Text="第 7 周" Click="ChangeCurrentWeek"/>
+                                <MenuFlyoutItem x:Name="week8" Text="第 8 周" Click="ChangeCurrentWeek"/>
+                                <MenuFlyoutItem x:Name="week9" Text="第 9 周" Click="ChangeCurrentWeek"/>
+                                <MenuFlyoutItem x:Name="week10" Text="第 10 周" Click="ChangeCurrentWeek"/>
+                                <MenuFlyoutItem x:Name="week11" Text="第 11 周" Click="ChangeCurrentWeek"/>
+                                <MenuFlyoutItem x:Name="week12" Text="第 12 周" Click="ChangeCurrentWeek"/>
+                                <MenuFlyoutItem x:Name="week13" Text="第 13 周" Click="ChangeCurrentWeek"/>
+                                <MenuFlyoutItem x:Name="week14" Text="第 14 周" Click="ChangeCurrentWeek"/>
+                                <MenuFlyoutItem x:Name="week15" Text="第 15 周" Click="ChangeCurrentWeek"/>
                             </MenuFlyout>
                         </Button.Flyout>
                     </Button>
