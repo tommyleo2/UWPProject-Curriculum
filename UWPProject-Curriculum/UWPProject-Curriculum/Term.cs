@@ -29,6 +29,7 @@ namespace UWPProject_Curriculum {
         public int grade { set; get; }
         public int semester { set; get; }  //  semester in a year
         public int weekNum { set; get; }
+        public int nowWeek { set; get; }
         public ObservableCollection<Course> courseList { set; get; }
 
         public void deleteTerm() {

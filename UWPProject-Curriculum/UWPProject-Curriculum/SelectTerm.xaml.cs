@@ -122,9 +122,15 @@ namespace UWPProject_Curriculum
             {
                 var i = new MessageDialog("该年级当前学期尚未创建，是否跳转到创建页面?");
                 i.Commands.Add(new UICommand("否"));
-                i.Commands.Add(new UICommand("是", new UICommandInvokedHandler(this.navigatiTo)));               i.DefaultCommandIndex = 1;
+                i.Commands.Add(new UICommand("是", new UICommandInvokedHandler(this.navigatiTo)));
+                i.DefaultCommandIndex = 1;
                 i.CancelCommandIndex = 0;
                 await i.ShowAsync();
+            }
+            else
+            {
+                composite["recnetterm"] = str;
+                ApplicationData.Current.LocalSettings.Values["TheWorkInProgress"] = composite;
             }
         }
 
