@@ -8,6 +8,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button Click="Button_Click" Margin="597,0,0,688">Go</Button>
         <TextBlock x:Name="debugTextBlock" Margin="0,0,0,200" VerticalAlignment="Bottom" HorizontalAlignment="Left">Debug</TextBlock>
     </Grid>
 </Page>

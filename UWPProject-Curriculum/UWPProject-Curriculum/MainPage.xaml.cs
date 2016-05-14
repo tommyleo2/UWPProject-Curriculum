@@ -28,7 +28,7 @@ namespace UWPProject_Curriculum
             createDebugTerm();
             //updateDebugTerm();
             //deleteDebugCourse();
-            deleteDebugTerm();
+            //deleteDebugTerm();
             displayDebugTerm();
         }
 
@@ -81,15 +81,19 @@ namespace UWPProject_Curriculum
         }
         private void createDebugTerm() {
             term = new Term(2, 2, 18);
-            /*
-            Course course = new Course();
-            course.name = "Computer Organization Principle";
-            course.room = "C403";
-            course.startWeek = 1;
-            course.weeksLast = 18;
-            term.addCourse(course);
-            */
+
+            if (term.courseList.Count == 0) {
+                Course course = new Course();
+                course.name = "Computer Organization Principle";
+                course.room = "C403";
+                course.startWeek = 1;
+                course.weeksLast = 18;
+                term.addCourse(course);
+            }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            Frame.Navigate(typeof(CurrentCurriculum), term);
+        }
     }
 }
