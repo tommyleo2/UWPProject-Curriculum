@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -143,6 +144,10 @@ namespace UWPProject_Curriculum {
 
         private Term term { get; set; }
         private int currentWeek { get; set; }
+
+        private void Share_Term(object sender, RoutedEventArgs e) {
+            DataTransferManager.ShowShareUI();
+        }
     }
     class CourseAndTerm {
         public CourseAndTerm(Course c, Term t) {
