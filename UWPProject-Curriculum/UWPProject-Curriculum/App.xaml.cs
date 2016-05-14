@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using SQLitePCL;
+using Windows.Storage;
 
 namespace UWPProject_Curriculum
 {
@@ -77,7 +78,36 @@ namespace UWPProject_Curriculum
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(CreateTerm), e.Arguments);
+                    var composite = new ApplicationDataCompositeValue();
+                    if (ApplicationData.Current.LocalSettings.Values.ContainsKey("TheWorkInProgress"))
+                    {
+                        if (composite["recentterm"] == null)
+                        {
+                            rootFrame.Navigate(typeof(CreateTerm), e.Arguments);
+                        }
+                        else
+                        {
+                            string str = (string)composite["recentterm"];
+                            int grade = Convert.ToInt32(str[8]);
+                            int semester = Convert.ToInt32(str[9]);
+                            Term term = new Term(grade, semester, 18);
+                            int week = Convert.ToInt32((string)composite["nowWeek"]);
+                            term.weekNum = week;
+                            rootFrame.Navigate(typeof(CurrentCurriculum), term);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 1; i <= 4; i++)
+                        {
+                            for (int j = 1; j <= 3; j++)
+                            {
+                                string str = "semester" + i + j;
+                                composite[str] = null;
+                            }
+                        }
+                        composite["recentterm"] = null;
+                    }
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();

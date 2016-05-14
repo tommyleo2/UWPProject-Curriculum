@@ -184,5 +184,10 @@ namespace UWPProject_Curriculum
         {
             WeekDay.Content = "星期一";
         }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CurrentCurriculum), term);
+        }
     }
 }

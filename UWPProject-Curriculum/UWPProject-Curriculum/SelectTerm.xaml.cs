@@ -24,9 +24,15 @@ namespace UWPProject_Curriculum
     /// </summary>
     public sealed partial class SelectTerm : Page
     {
+        Term term { get; set; }
         public SelectTerm()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            term = (Term)e.Parameter;
         }
 
         private void Grade1_Click(object sender, RoutedEventArgs e)
@@ -122,15 +128,26 @@ namespace UWPProject_Curriculum
             {
                 var i = new MessageDialog("该年级当前学期尚未创建，是否跳转到创建页面?");
                 i.Commands.Add(new UICommand("否"));
-                i.Commands.Add(new UICommand("是", new UICommandInvokedHandler(this.navigatiTo)));               i.DefaultCommandIndex = 1;
+                i.Commands.Add(new UICommand("是", new UICommandInvokedHandler(this.navigatiTo)));
+                i.DefaultCommandIndex = 1;
                 i.CancelCommandIndex = 0;
                 await i.ShowAsync();
+            }
+            else
+            {
+                composite["recnetterm"] = str;
+                ApplicationData.Current.LocalSettings.Values["TheWorkInProgress"] = composite;
             }
         }
 
         private void navigatiTo(IUICommand command)
         {
             Frame.Navigate(typeof(CreateTerm));
+        }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CurrentCurriculum), term);
         }
     }
 }

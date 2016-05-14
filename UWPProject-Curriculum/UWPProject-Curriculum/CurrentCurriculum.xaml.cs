@@ -107,7 +107,7 @@ namespace UWPProject_Curriculum {
 
         private void Select_Term(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(SelectTerm));
+            Frame.Navigate(typeof(SelectTerm), term);
         }
 
         private void Add_Class(object sender, RoutedEventArgs e)

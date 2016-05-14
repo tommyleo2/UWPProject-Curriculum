@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -37,63 +38,65 @@ namespace UWPProject_Curriculum
 
         private void createButton_Click(object sender, RoutedEventArgs e)
         {
-            var composite = new ApplicationDataCompositeValue();
-            int _grade = 0, _semester = 0, _weekNum;
-            switch((string)Grade.Content)
+            if (WeekLast.Text == "")
             {
-                case "大一":
-                    _grade = 1;
-                    break;
-                case "大二":
-                    _grade = 2;
-                    break;
-                case "大三":
-                    _grade = 3;
-                    break;
-                case "大四":
-                    _grade = 4;
-                    break;
-            }
-            switch((string)Term.Content)
+                var i = new MessageDialog("请输入当前学期持续周数").ShowAsync();
+            } else
             {
-                case "第一学期":
-                    _semester = 1;
-                    if (_grade == 1)
-                    composite["semester11"] = true;
-                    if (_grade == 2)
-                        composite["semester21"] = true;
-                    if (_grade == 3)
-                        composite["semester31"] = true;
-                    if (_grade == 4)
-                        composite["semester41"] = true;
-                    break;
-                case "第二学期":
-                    _semester = 2;
-                    if (_grade == 1)
-                        composite["semester12"] = true;
-                    if (_grade == 2)
-                        composite["semester22"] = true;
-                    if (_grade == 3)
-                        composite["semester32"] = true;
-                    if (_grade == 4)
-                        composite["semester42"] = true;
-                    break;
-                case "第三学期":
-                    _semester = 3;
-                    if (_grade == 1)
-                        composite["semester13"] = true;
-                    if (_grade == 2)
-                        composite["semester23"] = true;
-                    if (_grade == 3)
-                        composite["semester33"] = true;
-                    if (_grade == 4)
-                        composite["semester43"] = true;
-                    break;
+                var composite = ApplicationData.Current.LocalSettings.Values["TheWorkInProgress"] as ApplicationDataCompositeValue;
+                int _grade = 0, _semester = 0, _weekNum;
+                string ss = "semester";
+
+
+                switch ((string)Grade.Content)
+                {
+                    case "大一":
+                        _grade = 1;
+                        ss += '1';
+                        break;
+                    case "大二":
+                        _grade = 2;
+                        ss += '2';
+                        break;
+                    case "大三":
+                        _grade = 3;
+                        ss += '3';
+                        break;
+                    case "大四":
+                        _grade = 4;
+                        ss += '4';
+                        break;
+                }
+                switch ((string)Term.Content)
+                {
+                    case "第一学期":
+                        _semester = 1;
+                        ss += "1";
+                        break;
+                    case "第二学期":
+                        _semester = 1;
+                        ss += "2";
+                        break;
+                    case "第三学期":
+                        _semester = 1;
+                        ss += "3";
+                        break;
+                }
+                if (composite[ss] == null)
+                {
+                    composite[ss] = true;
+                    composite["recentterm"] = ss;
+                    _weekNum = Convert.ToInt32(WeekLast.Text);
+                    Term term = new Term(_grade, _semester, _weekNum);
+                    ApplicationData.Current.LocalSettings.Values["TheWorkInProgress"] = composite;
+                    Frame.Navigate(typeof(CurrentCurriculum), term);
+                }
+                else
+                {
+                    var i = new MessageDialog("该年级当前学期已存在").ShowAsync();
+                };
             }
-            _weekNum = Convert.ToInt32(WeekLast.Text);
-            Term term = new Term(_grade, _semester, _weekNum);
-            ApplicationData.Current.LocalSettings.Values["TheWorkInProgress"] = composite;
-            Frame.Navigate(typeof(CurrentCurriculum), term);
+            
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
