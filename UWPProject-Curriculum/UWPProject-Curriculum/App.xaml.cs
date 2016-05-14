@@ -14,6 +14,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using SQLitePCL;
+using Windows.Storage;
+using Windows.UI.Notifications;
 
 namespace UWPProject_Curriculum
 {
@@ -26,6 +29,7 @@ namespace UWPProject_Curriculum
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
+        /// 
         public App()
         {
             Microsoft.ApplicationInsights.WindowsAppInitializer.InitializeAsync(
@@ -75,7 +79,47 @@ namespace UWPProject_Curriculum
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    Windows.Data.Xml.Dom.XmlDocument T = new Windows.Data.Xml.Dom.XmlDocument();
+                    T.LoadXml(File.ReadAllText("tile.xml"));
+                    var tileNotification = new TileNotification(T);
+                    var elements = T.GetElementsByTagName("text");
+                    var updator = TileUpdateManager.CreateTileUpdaterForApplication();
+                    updator.Update(tileNotification);
+
+                    if (ApplicationData.Current.LocalSettings.Values.ContainsKey("TheWorkInProgress"))
+                    {
+                        var composite = ApplicationData.Current.LocalSettings.Values["TheWorkInProgress"] as ApplicationDataCompositeValue;
+                        if (composite["recentterm"] == null)
+                        {
+                            rootFrame.Navigate(typeof(CreateTerm), e.Arguments);
+                        }
+                        else
+                        {
+                            string str = (string)composite["recentterm"];
+                            int grade = Convert.ToInt32(str[8]) - 48;
+                            int semester = Convert.ToInt32(str[9]) - 48;
+                            Term term = new Term(grade, semester, 18);
+                            int week = (int)composite["nowWeek"];
+                            term.weekNum = week;
+                            rootFrame.Navigate(typeof(CurrentCurriculum), term);
+                        }
+                    }
+                    else
+                    {
+                        var composite = new ApplicationDataCompositeValue();
+                        for (int i = 1; i <= 4; i++)
+                        {
+                            for (int j = 1; j <= 3; j++)
+                            {
+                                string str = "semester" + i + j;
+                                composite[str] = null;
+                            }
+                        }
+                        composite["recentterm"] = null;
+                        composite["nowWeek"] = null;
+                        ApplicationData.Current.LocalSettings.Values["TheWorkInProgress"] = composite;
+                        rootFrame.Navigate(typeof(CreateTerm));
+                    }
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
@@ -106,4 +150,5 @@ namespace UWPProject_Curriculum
             deferral.Complete();
         }
     }
+
 }
