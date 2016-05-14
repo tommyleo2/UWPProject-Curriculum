@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -15,6 +16,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
+<<<<<<< HEAD
 namespace UWPProject_Curriculum {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -55,60 +57,93 @@ namespace UWPProject_Curriculum {
                 }
             }
         }
-        private void Change_Now_Week1(object sender, RoutedEventArgs e) {
-            Current_Week.Content = "Week 1";
+        private void Change_Now_Week1(object sender, RoutedEventArgs e)
+        {
+            Current_Week.Content = "第 1 周";
         }
-        private void Change_Now_Week2(object sender, RoutedEventArgs e) {
-            Current_Week.Content = "Week 2";
+        private void Change_Now_Week2(object sender, RoutedEventArgs e)
+        {
+            Current_Week.Content = "第 2 周";
         }
-        private void Change_Now_Week3(object sender, RoutedEventArgs e) {
-            Current_Week.Content = "Week 3";
+        private void Change_Now_Week3(object sender, RoutedEventArgs e)
+        {
+            Current_Week.Content = "第 3 周";
         }
-        private void Change_Now_Week4(object sender, RoutedEventArgs e) {
-            Current_Week.Content = "Week 4";
+        private void Change_Now_Week4(object sender, RoutedEventArgs e)
+        {
+            Current_Week.Content = "第 4 周";
         }
-        private void Change_Now_Week5(object sender, RoutedEventArgs e) {
-            Current_Week.Content = "Week 5";
+        private void Change_Now_Week5(object sender, RoutedEventArgs e)
+        {
+            Current_Week.Content = "第 5 周";
         }
-        private void Change_Now_Week6(object sender, RoutedEventArgs e) {
-            Current_Week.Content = "Week 6";
+        private void Change_Now_Week6(object sender, RoutedEventArgs e)
+        {
+            Current_Week.Content = "第 6 周";
         }
-        private void Change_Now_Week7(object sender, RoutedEventArgs e) {
-            Current_Week.Content = "Week 7";
+        private void Change_Now_Week7(object sender, RoutedEventArgs e)
+        {
+            Current_Week.Content = "第 7 周";
         }
-        private void Change_Now_Week8(object sender, RoutedEventArgs e) {
-            Current_Week.Content = "Week 8";
+        private void Change_Now_Week8(object sender, RoutedEventArgs e)
+        {
+            Current_Week.Content = "第 8 周";
         }
-        private void Change_Now_Week9(object sender, RoutedEventArgs e) {
-            Current_Week.Content = "Week 9";
+        private void Change_Now_Week9(object sender, RoutedEventArgs e)
+        {
+            Current_Week.Content = "第 9 周";
         }
-        private void Change_Now_Week10(object sender, RoutedEventArgs e) {
-            Current_Week.Content = "Week 10";
+        private void Change_Now_Week10(object sender, RoutedEventArgs e)
+        {
+            Current_Week.Content = "第 10 周";
         }
-        private void Change_Now_Week11(object sender, RoutedEventArgs e) {
-            Current_Week.Content = "Week 11";
+        private void Change_Now_Week11(object sender, RoutedEventArgs e)
+        {
+            Current_Week.Content = "第 11 周";
         }
-        private void Change_Now_Week12(object sender, RoutedEventArgs e) {
-            Current_Week.Content = "Week 12";
+        private void Change_Now_Week12(object sender, RoutedEventArgs e)
+        {
+            Current_Week.Content = "第 12 周";
         }
-        private void Change_Now_Week13(object sender, RoutedEventArgs e) {
-            Current_Week.Content = "Week 13";
+        private void Change_Now_Week13(object sender, RoutedEventArgs e)
+        {
+            Current_Week.Content = "第 13 周";
         }
-        private void Change_Now_Week14(object sender, RoutedEventArgs e) {
-            Current_Week.Content = "Week 14";
+        private void Change_Now_Week14(object sender, RoutedEventArgs e)
+        {
+            Current_Week.Content = "第 14 周";
         }
-        private void Change_Now_Week15(object sender, RoutedEventArgs e) {
-            Current_Week.Content = "Week 15";
+        private void Change_Now_Week15(object sender, RoutedEventArgs e)
+        {
+            Current_Week.Content = "第 15 周";
         }
-        private void Select_Term(object sender, RoutedEventArgs e) {
 
+        private void Select_Term(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SelectTerm));
         }
-        private void Add_Class(object sender, RoutedEventArgs e) {
 
+        private void Add_Class(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(AddClass), term);
         }
-        private void deleteTerm(object sender, RoutedEventArgs e) {
 
+        private async void deleteTerm(object sender, RoutedEventArgs e)
+        {
+            var confirm = new MessageDialog("Delete current term?");
+            confirm.Commands.Add(new UICommand("No"));
+            confirm.Commands.Add(new UICommand("Yes", new UICommandInvokedHandler(this.Select_Term_After_Delete)));
+            confirm.DefaultCommandIndex = 1;
+            confirm.CancelCommandIndex = 0;
+            await confirm.ShowAsync();
         }
+
+        private void Select_Term_After_Delete(IUICommand command)
+        {
+            term.deleteTerm();
+            Frame.Navigate(typeof(CreateTerm));
+        }
+
         private Term term { get; set; }
         private int currentWeek { get; set; }
     }
