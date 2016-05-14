@@ -45,7 +45,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="星期" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" />
-            <Button IsEnabled="False" Grid.Column="2" x:Name="WeekDay" Content="星期一"  FontSize="20" HorizontalAlignment="Right">
+            <Button IsEnabled="False" Grid.Column="2" x:Name="WeekDay" Content="星期一"  FontSize="20" HorizontalAlignment="Right" Click="WeekDay_Click">
                 <Button.Flyout>
                     <MenuFlyout>
                         <MenuFlyoutItem Text="星期一" Click="MenuFlyoutItem_Click"/>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<tile>
+  <visual branding="name">
+    <binding template="TileSmall">
+      <image src="Assets/bg1.jpg" placement="background"/>
+      <group>
+        <subgroup>
+
+          <text hint-wrap="true" hint-style="captionSubtle">schedule</text>
+        </subgroup>
+      </group>
+    </binding>
+
+    <binding template="TileMedium">
+      <image src="Assets/bg1.jpg" placement="background"/>
+      <group>
+        <subgroup>
+
+          <text hint-wrap="true" hint-style="captionSubtle">schedule</text>
+        </subgroup>
+      </group>
+    </binding>
+
+    <binding template="TileWide">
+      <image src="Assets/bg1.jpg" placement="background"/>
+      <group>
+        <subgroup>
+
+          <text hint-wrap="true" hint-style="captionSubtle">schedule</text>
+        </subgroup>
+      </group>
+    </binding>
+
+    <binding template="TileLarge">
+      <image src="Assets/bg1.jpg" placement="background"/>
+      <group>
+        <subgroup>
+          <text hint-wrap="true" hint-style="captionSubtle">schedule</text>
+        </subgroup>
+      </group>
+    </binding>
+  </visual>
+</tile>
