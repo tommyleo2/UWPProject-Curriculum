@@ -1,0 +1,72 @@
+﻿<Page
+    x:Class="UWPProject_Curriculum.AddClass"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPProject_Curriculum"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="创建课程" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"/>
+        <Grid Grid.Row="1" Width="300">
+            <TextBox Name="name" Header="名字" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Width="250"/>
+        </Grid>
+        <Grid Grid.Row="2" Width="300">
+            <TextBox Name="room" Header="地点" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Width="250"/>
+        </Grid>
+        <Grid Grid.Row="3" Width="300">
+            <TextBox Name="startWeek" Header="开始周" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Width="250"/>
+        </Grid>
+        <Grid Grid.Row="4" Width="300">
+            <TextBox Name="weeksLast" Header="持续周数" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Width="250"/>
+        </Grid>
+        <Grid Grid.Row="5"  Width="250">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="星期" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" />
+            <Button Grid.Column="2" x:Name="WeekDay" Content="星期一"  FontSize="20" HorizontalAlignment="Right">
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="星期一" Click="MenuFlyoutItem_Click"/>
+                        <MenuFlyoutItem Text="星期二" Click="MenuFlyoutItem_Click_1"/>
+                        <MenuFlyoutItem Text="星期三" Click="MenuFlyoutItem_Click_2"/>
+                        <MenuFlyoutItem Text="星期四" Click="MenuFlyoutItem_Click_3"/>
+                        <MenuFlyoutItem Text="星期五" Click="MenuFlyoutItem_Click_4"/>
+                        <MenuFlyoutItem Text="星期六" Click="MenuFlyoutItem_Click_5"/>
+                        <MenuFlyoutItem Text="星期日" Click="MenuFlyoutItem_Click_6"/>
+                    </MenuFlyout>
+                </Button.Flyout>
+            </Button>
+        </Grid>
+        <Grid Grid.Row="6"  Width="300">
+            <TextBox Name="startTime" Header="上课时间" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Width="250"/>
+        </Grid>
+        <Grid Grid.Row="7"  Width="300" Margin="490,5,490,75" Grid.RowSpan="2">
+            <TextBox Name="endTime" Header="下课时间" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Width="250"/>
+        </Grid>
+        <Grid Grid.Row="8"  Width="250" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="createButton" FontSize="20"  Grid.Column="0" Content="Create" Click="createButton_Click" HorizontalAlignment="Left" RenderTransformOrigin="-0.519,0.604"></Button>
+            <Button x:Name="deleteButton" FontSize="20" Grid.Column="2" Content="Clear" Click="CancelButton_Click"  HorizontalAlignment="Right" ></Button>
+        </Grid>
+    </Grid>
+</Page>
