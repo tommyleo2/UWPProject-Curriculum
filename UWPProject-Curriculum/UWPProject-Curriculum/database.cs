@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SQLitePCL;
+using System.Collections.ObjectModel;
 
 namespace UWPProject_Curriculum
 {
@@ -93,9 +94,9 @@ namespace UWPProject_Curriculum
             }
         }
 
-        public List<Course> selectCourse()
+        public ObservableCollection<Course> selectCourse()
         {
-            List<Course> list = new List<Course>();
+            ObservableCollection<Course> list = new ObservableCollection<Course>();
             using (var statement = conn.Prepare("SELECT * FROM Course WHERE Semester = ? AND Grade = ?"))
             {
                 statement.Bind(1, Semester);

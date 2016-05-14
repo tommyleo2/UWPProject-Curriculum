@@ -16,7 +16,6 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-<<<<<<< HEAD
 namespace UWPProject_Curriculum {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -36,6 +35,7 @@ namespace UWPProject_Curriculum {
                     int startTime;
                     if (course.lesson[i] == '1') {
                         Button courseBlock = new Button();
+                        courseBlock.Click += toModify;
                         courseBlock.Content += course.name + "\n课室： " + course.room;
                         day = i / 15;
                         startTime = i % 15;
@@ -57,6 +57,17 @@ namespace UWPProject_Curriculum {
                 }
             }
         }
+
+        private void toModify(object sender, RoutedEventArgs e) {
+            Course course = new Course();
+            Button currentButton = (Button)sender;
+            string content = (string)currentButton.Content;
+            int div = content.IndexOf("\n课室： ");
+            course.name = content.Substring(0, div);
+            course.room = content.Substring(div + 5);
+            //Frame.Navigate(typeof())
+        }
+
         private void Change_Now_Week1(object sender, RoutedEventArgs e)
         {
             Current_Week.Content = "第 1 周";

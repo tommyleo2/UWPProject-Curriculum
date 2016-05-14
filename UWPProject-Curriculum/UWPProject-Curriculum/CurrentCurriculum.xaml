@@ -122,9 +122,9 @@
     </Grid>
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Grid.Column="0" Icon="Next" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="Select_Term"/>
-            <AppBarButton Grid.Column="1" Icon="Add" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="Add_Class"/>
-            <AppBarButton Grid.Column="2" Icon="Delete" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="deleteTerm"/>
+            <AppBarButton Grid.Column="0" Label="选择学期" Icon="Next" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="Select_Term"/>
+            <AppBarButton Grid.Column="1" Label="添加课程" Icon="Add" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="Add_Class"/>
+            <AppBarButton Grid.Column="2" Label="删除学期" Icon="Delete" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="deleteTerm"/>
         </CommandBar>
     </Page.BottomAppBar>
 </Page>

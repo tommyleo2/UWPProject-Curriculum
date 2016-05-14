@@ -52,22 +52,45 @@ namespace UWPProject_Curriculum
             newcourse.startWeek = start;
             int last = Convert.ToInt32(weeksLast.Text);
             newcourse.weeksLast = last;
-            int weekday = Convert.ToInt32(WeekDay.Content);
-            weekday--;
+            int weekday = 0;
+            switch ((string)WeekDay.Content) {
+                case "星期一":
+                    weekday = 0;
+                    break;
+                case "星期二":
+                    weekday = 1;
+                    break;
+                case "星期三":
+                    weekday = 2;
+                    break;
+                case "星期四":
+                    weekday = 3;
+                    break;
+                case "星期五":
+                    weekday = 4;
+                    break;
+                case "星期六":
+                    weekday = 5;
+                    break;
+                case "星期天":
+                    weekday = 6;
+                    break;
+            }
             int st = Convert.ToInt32(startTime.Text);
             int et = Convert.ToInt32(endTime.Text);
-            for (int i = st; i < et; i++)
+            for (int i = st; i <= et; i++)
             {
-                newcourse.lesson[weekday + st - 1] = '1';
+                newcourse.lesson[weekday * 15 + i - 1] = '1';
             }
             term.addCourse(newcourse);
+            Frame.Navigate(typeof(CurrentCurriculum), term);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             name.Text = "";
             room.Text = "";
-            startTime.Text = "";
+            startWeek.Text = "";
             weeksLast.Text = "";
             WeekDay.Content = "星期一";
             startTime.Text = "";
