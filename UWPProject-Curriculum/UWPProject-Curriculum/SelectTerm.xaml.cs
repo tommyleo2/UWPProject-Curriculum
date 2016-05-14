@@ -24,9 +24,15 @@ namespace UWPProject_Curriculum
     /// </summary>
     public sealed partial class SelectTerm : Page
     {
+        Term term { get; set; }
         public SelectTerm()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            term = (Term)e.Parameter;
         }
 
         private void Grade1_Click(object sender, RoutedEventArgs e)
@@ -137,6 +143,11 @@ namespace UWPProject_Curriculum
         private void navigatiTo(IUICommand command)
         {
             Frame.Navigate(typeof(CreateTerm));
+        }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CurrentCurriculum), term);
         }
     }
 }
