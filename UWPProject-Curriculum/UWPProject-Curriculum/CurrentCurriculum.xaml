@@ -25,7 +25,7 @@
                     <!--<TextBlock x:Name="Current_Week" Grid.Column="1" Text="Week 1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="40"/>-->
                     <Button x:Name="Current_Week" Content="第 1 周" Grid.Column="0" Opacity="1" FontSize ="20" Width="90" Height="45" BorderThickness="2" HorizontalAlignment="Center">
                         <Button.Flyout>
-                            <MenuFlyout>
+                            <MenuFlyout ScrollViewer.IsVerticalScrollChainingEnabled="True">
                                 <MenuFlyoutItem Text="第 1 周" Click="Change_Now_Week1"/>
                                 <MenuFlyoutItem Text="第 2 周" Click="Change_Now_Week2"/>
                                 <MenuFlyoutItem Text="第 3 周" Click="Change_Now_Week3"/>

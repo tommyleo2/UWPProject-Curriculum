@@ -65,8 +65,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" FontSize="20" x:Name="createButton" Content="Modify" Click="createButton_Click" HorizontalAlignment="Left"></Button>
-            <Button Grid.Column="1" FontSize="20" x:Name="updateButton" Content="Update" Click="createButton_Click" HorizontalAlignment="Center"></Button>
+            <Button Grid.Column="0" FontSize="20" x:Name="createButton" Content="Modify" Click="modifyButton_Click" HorizontalAlignment="Left"></Button>
+            <Button Grid.Column="1" FontSize="20" x:Name="updateButton" Content="Update" Click="updateButton_Click" HorizontalAlignment="Center"></Button>
             <Button Grid.Column="2" FontSize="20" x:Name="deleteButton" Content="Delete" Click="deleteButton_Click" HorizontalAlignment="Right"></Button>
         </Grid>
     </Grid>

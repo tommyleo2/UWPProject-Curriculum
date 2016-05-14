@@ -48,7 +48,18 @@ namespace UWPProject_Curriculum
             Course newcourse = new Course();
             newcourse.name = name.Text;
             newcourse.room = room.Text;
-
+            int start = Convert.ToInt32(startWeek.Text);
+            newcourse.startWeek = start;
+            int last = Convert.ToInt32(weeksLast.Text);
+            newcourse.weeksLast = last;
+            int weekday = Convert.ToInt32(WeekDay.Content);
+            weekday--;
+            int st = Convert.ToInt32(startTime.Text);
+            int et = Convert.ToInt32(endTime.Text);
+            for (int i = st; i < et; i++)
+            {
+                newcourse.lesson[weekday + st - 1] = '1';
+            }
             term.addCourse(newcourse);
         }
 

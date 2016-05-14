@@ -27,12 +27,17 @@ namespace UWPProject_Curriculum
             this.InitializeComponent();
         }
 
-        private void createButton_Click(object sender, RoutedEventArgs e)
+        private void modifyButton_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CurrentCurriculum));
+        }
+
+        private void updateButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
