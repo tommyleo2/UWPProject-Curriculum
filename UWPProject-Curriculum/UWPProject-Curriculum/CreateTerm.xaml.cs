@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -36,6 +37,7 @@ namespace UWPProject_Curriculum
 
         private void createButton_Click(object sender, RoutedEventArgs e)
         {
+            var composite = new ApplicationDataCompositeValue();
             int _grade = 0, _semester = 0, _weekNum;
             switch((string)Grade.Content)
             {
@@ -56,19 +58,41 @@ namespace UWPProject_Curriculum
             {
                 case "第一学期":
                     _semester = 1;
+                    if (_grade == 1)
+                    composite["semester11"] = true;
+                    if (_grade == 2)
+                        composite["semester21"] = true;
+                    if (_grade == 3)
+                        composite["semester31"] = true;
+                    if (_grade == 4)
+                        composite["semester41"] = true;
                     break;
                 case "第二学期":
                     _semester = 2;
+                    if (_grade == 1)
+                        composite["semester12"] = true;
+                    if (_grade == 2)
+                        composite["semester22"] = true;
+                    if (_grade == 3)
+                        composite["semester32"] = true;
+                    if (_grade == 4)
+                        composite["semester42"] = true;
                     break;
                 case "第三学期":
                     _semester = 3;
-                    break;
-                case "第四学期":
-                    _semester = 4;
+                    if (_grade == 1)
+                        composite["semester13"] = true;
+                    if (_grade == 2)
+                        composite["semester23"] = true;
+                    if (_grade == 3)
+                        composite["semester33"] = true;
+                    if (_grade == 4)
+                        composite["semester43"] = true;
                     break;
             }
             _weekNum = Convert.ToInt32(WeekLast.Text);
             Term term = new Term(_grade, _semester, _weekNum);
+            ApplicationData.Current.LocalSettings.Values["TheWorkInProgress"] = composite;
             Frame.Navigate(typeof(CurrentCurriculum), term);
         }
 
@@ -113,10 +137,6 @@ namespace UWPProject_Curriculum
         {
             Term.Content = "第三学期";
         }
-
-        private void change_term4(object sender, RoutedEventArgs e)
-        {
-            Term.Content = "第四学期";
-        }
+        
     }
 }

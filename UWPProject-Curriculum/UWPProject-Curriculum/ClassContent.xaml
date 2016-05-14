@@ -21,16 +21,16 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="课程详情" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"/>
         <Grid Grid.Row="1" Width="300">
-            <TextBox Name="name" Header="课程名" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Width="300"/>
+            <TextBox  IsReadOnly="True" Name="name" Header="课程名" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Width="300"/>
         </Grid>
         <Grid Grid.Row="2" Width="300">
-            <TextBox Name="room" Header="课室" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Width="300"/>
+            <TextBox IsReadOnly="True" Name="room" Header="课室" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Width="300"/>
         </Grid>
         <Grid Grid.Row="3" Width="300">
-            <TextBox Name="startWeek" Header="开始周" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Width="300"/>
+            <TextBox IsReadOnly="True" Name="startWeek" Header="开始周" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Width="300"/>
         </Grid>
         <Grid Grid.Row="4" Width="300">
-            <TextBox Name="weeksLast" Header="持续周数" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Width="300"/>
+            <TextBox IsReadOnly="True" Name="weeksLast" Header="持续周数" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Width="300"/>
         </Grid>
         <Grid Grid.Row="5"  Width="300" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
@@ -39,7 +39,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="星期" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" />
-            <Button Grid.Column="2" x:Name="WeekDay" Content="星期一"  FontSize="20" HorizontalAlignment="Right">
+            <Button IsEnabled="False" Grid.Column="2" x:Name="WeekDay" Content="星期一"  FontSize="20" HorizontalAlignment="Right">
                 <Button.Flyout>
                     <MenuFlyout>
                         <MenuFlyoutItem Text="星期一" Click="MenuFlyoutItem_Click"/>
@@ -54,10 +54,10 @@
             </Button>
         </Grid>
         <Grid Grid.Row="6"  Width="300">
-            <TextBox Name="startTime" Header="上课时间" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Width="300"/>
+            <TextBox IsReadOnly="True" Name="startTime" Header="上课时间" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Width="300"/>
         </Grid>
         <Grid Grid.Row="7"  Width="300">
-            <TextBox Name="endTime" Header="下课时间" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Width="300"/>
+            <TextBox IsReadOnly="True" Name="endTime" Header="下课时间" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Width="300"/>
         </Grid>
         <Grid Grid.Row="8"  Width="300" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
@@ -65,9 +65,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" FontSize="20" x:Name="createButton" Content="Modify" Click="modifyButton_Click" HorizontalAlignment="Left"></Button>
-            <Button Grid.Column="1" FontSize="20" x:Name="updateButton" Content="Update" Click="updateButton_Click" HorizontalAlignment="Center"></Button>
-            <Button Grid.Column="2" FontSize="20" x:Name="deleteButton" Content="Delete" Click="deleteButton_Click" HorizontalAlignment="Right"></Button>
+            <Button Grid.Column="0" FontSize="20" x:Name="createButton" Content="设置" Click="modifyButton_Click" HorizontalAlignment="Left"></Button>
+            <Button IsEnabled="False" Grid.Column="1" FontSize="20" x:Name="updateButton" Content="修改" Click="updateButton_Click" HorizontalAlignment="Center"></Button>
+            <Button IsEnabled="False" Grid.Column="2" FontSize="20" x:Name="deleteButton" Content="删除" Click="deleteButton_Click" HorizontalAlignment="Right"></Button>
         </Grid>
     </Grid>
 </Page>

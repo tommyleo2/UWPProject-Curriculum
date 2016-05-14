@@ -7,7 +7,40 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="600">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="选择当前学期" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="60"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="年级:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="30"/>
+            <CheckBox x:Name="Grade1" Grid.Column="1" Content="大一" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Click="Grade1_Click"/>
+            <CheckBox x:Name="Grade2" Grid.Column="2" Content="大二" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Click="Grade2_Click"/>
+            <CheckBox x:Name="Grade3" Grid.Column="3" Content="大三" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Click="Grade3_Click"/>
+            <CheckBox x:Name="Grade4" Grid.Column="4" Content="大四" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Click="Grade4_Click"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="学期:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="30"/>
+            <CheckBox x:Name="term1" Grid.Column="1" Content="第一学期" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" Click="term1_Click"/>
+            <CheckBox x:Name="term2" Grid.Column="2" Content="第二学期" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" Click="term2_Click"/>
+            <CheckBox x:Name="term3" Grid.Column="3" Content="第三学期" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" Click="term3_Click"/>
+        </Grid>
+        <Button Grid.Row="5" Content="确定" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Width="100" Height="55" Click="Button_Click"/>
     </Grid>
 </Page>
