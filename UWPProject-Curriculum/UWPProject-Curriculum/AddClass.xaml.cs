@@ -35,7 +35,7 @@ namespace UWPProject_Curriculum
             term = (Term)e.Parameter;
             name.Text = "";
             room.Text = "";
-            startTime.Text = "";
+            startWeek.Text = "";
             weeksLast.Text = "";
             WeekDay.Content = "星期一";
             startTime.Text = "";
@@ -61,6 +61,7 @@ namespace UWPProject_Curriculum
                 newcourse.lesson[weekday + st - 1] = '1';
             }
             term.addCourse(newcourse);
+            Frame.Navigate(typeof(CurrentCurriculum), term);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

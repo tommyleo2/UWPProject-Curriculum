@@ -47,7 +47,6 @@
                         <MenuFlyoutItem Text="第一学期" Click="change_term1"/>
                         <MenuFlyoutItem Text="第二学期" Click="change_term2"/>
                         <MenuFlyoutItem Text="第三学期" Click="change_term3"/>
-                        <MenuFlyoutItem Text="第四学期" Click="change_term4"/>
                     </MenuFlyout>
                 </Button.Flyout>
             </Button>
@@ -69,8 +68,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" x:Name="createButton" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Create" Click="createButton_Click"></Button>
-            <Button Grid.Column="2" x:Name="deleteButton" Content="Delete" Click="deleteButton_Click" VerticalAlignment="Center" HorizontalAlignment="Center"></Button>
+            <Button Grid.Column="0" x:Name="createButton" VerticalAlignment="Center" HorizontalAlignment="Center" Content="创建" Click="createButton_Click"></Button>
+            <Button Grid.Column="2" x:Name="deleteButton" Content="清空" Click="deleteButton_Click" VerticalAlignment="Center" HorizontalAlignment="Center"></Button>
         </Grid>
     </Grid>
 </Page>

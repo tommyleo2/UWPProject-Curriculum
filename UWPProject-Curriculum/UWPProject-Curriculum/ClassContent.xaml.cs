@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,23 +23,90 @@ namespace UWPProject_Curriculum
     /// </summary>
     public sealed partial class ClassContent : Page
     {
+        private Course course { get; set; }
+
+        private Term term { get; set; }
+
         public ClassContent()
         {
             this.InitializeComponent();
         }
 
-        private void modifyButton_Click(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            
         }
 
-        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        private void modifyButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(CurrentCurriculum));
+            name.IsReadOnly = false;
+            room.IsReadOnly = false;
+            startWeek.IsReadOnly = false;
+            weeksLast.IsReadOnly = false;
+            WeekDay.IsEnabled = true;
+            startTime.IsReadOnly = false;
+            endTime.IsReadOnly = false;
+            deleteButton.IsEnabled = true;
+            updateButton.IsEnabled = true;
+        }
+
+        private async void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            var confirm = new MessageDialog("是否删除当前课程?");
+            confirm.Commands.Add(new UICommand("No"));
+            confirm.Commands.Add(new UICommand("Yes", new UICommandInvokedHandler(this.Term_After_Delete)));
+            confirm.DefaultCommandIndex = 1;
+            confirm.CancelCommandIndex = 0;
+            await confirm.ShowAsync();
+        }
+
+        private void Term_After_Delete(IUICommand command)
+        {
+            term.deleteCourse(course);
+            Frame.Navigate(typeof(CurrentCurriculum), term);
         }
 
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
+            Course newcourse = new Course();
+            newcourse.name = name.Text;
+            newcourse.room = room.Text;
+            int start = Convert.ToInt32(startWeek.Text);
+            newcourse.startWeek = start;
+            int last = Convert.ToInt32(weeksLast.Text);
+            newcourse.weeksLast = last;
+            int weekday = 0;
+            switch ((string)WeekDay.Content)
+            {
+                case "星期一":
+                    weekday = 0;
+                    break;
+                case "星期二":
+                    weekday = 1;
+                    break;
+                case "星期三":
+                    weekday = 2;
+                    break;
+                case "星期四":
+                    weekday = 3;
+                    break;
+                case "星期五":
+                    weekday = 4;
+                    break;
+                case "星期六":
+                    weekday = 5;
+                    break;
+                case "星期天":
+                    weekday = 6;
+                    break;
+            }
+            int st = Convert.ToInt32(startTime.Text);
+            int et = Convert.ToInt32(endTime.Text);
+            for (int i = st; i <= et; i++)
+            {
+                newcourse.lesson[weekday * 15 + i - 1] = '1';
+            }
+            term.deleteCourse(course);
+            term.addCourse(newcourse);
 
         }
 
