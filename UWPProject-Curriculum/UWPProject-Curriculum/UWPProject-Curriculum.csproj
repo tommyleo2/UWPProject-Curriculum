@@ -93,6 +93,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="tile.xml" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +130,11 @@
     <None Include="UWPProject-Curriculum_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\bg1.jpg" />
+    <Content Include="Assets\bg2.jpg" />
+    <Content Include="Assets\bg3.jpg" />
+    <Content Include="Assets\bg4.jpg" />
+    <Content Include="Assets\bg5.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
