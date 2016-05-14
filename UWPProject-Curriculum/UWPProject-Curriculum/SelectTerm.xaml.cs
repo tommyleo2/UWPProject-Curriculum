@@ -33,6 +33,9 @@ namespace UWPProject_Curriculum
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             term = (Term)e.Parameter;
+            if (term == null) {
+                selectGoBack.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void Grade1_Click(object sender, RoutedEventArgs e)
@@ -106,20 +109,32 @@ namespace UWPProject_Curriculum
         {
             var composite = ApplicationData.Current.LocalSettings.Values["TheWorkInProgress"] as ApplicationDataCompositeValue;
             string str = "semester";
-            if (Grade1.IsChecked == true) str += "1";
-            else if (Grade2.IsChecked == true) str += "2";
-            else if (Grade3.IsChecked == true) str += "3";
-            else if (Grade4.IsChecked == true) str += "4";
-            else
-            {
+            if (Grade1.IsChecked == true) {
+                str += "1";
+                term.grade = 1;
+            } else if (Grade2.IsChecked == true) {
+                str += "2";
+                term.grade = 2;
+            } else if (Grade3.IsChecked == true) {
+                str += "3";
+                term.grade = 3;
+            } else if (Grade4.IsChecked == true) {
+                str += "4";
+                term.grade = 4;
+            } else {
                 var i = new MessageDialog("请选择年级").ShowAsync();
             }
 
-            if (term1.IsChecked == true) str += "1";
-            else if (term2.IsChecked == true) str += "2";
-            else if (term3.IsChecked == true) str += "3";
-            else
-            {
+            if (term1.IsChecked == true) {
+                str += "1";
+                term.semester = 1;
+            } else if (term2.IsChecked == true) {
+                str += "2";
+                term.semester = 2;
+            } else if (term3.IsChecked == true) {
+                str += "3";
+                term.semester = 3;
+            } else {
                 var i = new MessageDialog("请选择学期").ShowAsync();
             }
 
@@ -135,8 +150,10 @@ namespace UWPProject_Curriculum
             }
             else
             {
+                term.refreshCourse();
                 composite["recnetterm"] = str;
                 ApplicationData.Current.LocalSettings.Values["TheWorkInProgress"] = composite;
+                Frame.Navigate(typeof(CurrentCurriculum), term);
             }
         }
 

@@ -10,9 +10,9 @@ namespace UWPProject_Curriculum
 {
     class Database
     {
-        private int Semester;
-        private int Grade;
-        private int Week;
+        public int Semester { get; set; }
+        public int Grade { get; set; }
+        public int Week { get; set; }
         public SQLiteConnection conn;
         public Database(int grade, int semester, int week)
         {
@@ -92,6 +92,24 @@ namespace UWPProject_Curriculum
                 statement.Bind(10, courseLesson);
                 statement.Step();
             }
+        }
+
+        public Course getCourse(Course s) {
+            Course course = new Course();
+            using (var statement = conn.Prepare("SELECT * FROM Course WHERE Name = ? AND Room = ? AND Grade = ? AND Semester = ?")) {
+                statement.Bind(1, s.name);
+                statement.Bind(2, s.room);
+                statement.Bind(3, Grade);
+                statement.Bind(4, Semester);
+                statement.Step();
+                course.name = (string)statement[0];
+                course.room = (string)statement[1];
+                course.startWeek = (Int64)statement[2];
+                course.weeksLast = (Int64)statement[3];
+                string str = (string)statement[7];
+                course.lesson = str.ToCharArray();
+            }
+            return course;
         }
 
         public ObservableCollection<Course> selectCourse()

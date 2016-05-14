@@ -35,8 +35,8 @@ namespace UWPProject_Curriculum
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             CourseAndTerm ct = e.Parameter as CourseAndTerm;
-            course = ct.course;
             term = ct.term;
+            course = term.getCourse(ct.course);
             name.Text = course.name;
             room.Text = course.room;
             startWeek.Text = course.startWeek.ToString();
@@ -147,7 +147,7 @@ namespace UWPProject_Curriculum
             }
             term.deleteCourse(course);
             term.addCourse(newcourse);
-
+            Frame.Navigate(typeof(CurrentCurriculum), term);
         }
 
         private void MenuFlyoutItem_Click_1(object sender, RoutedEventArgs e)

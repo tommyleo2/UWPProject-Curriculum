@@ -9,7 +9,7 @@
 
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton Grid.Column="0" Label="选择学期" Icon="Back" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="AppBarButton_Click"/>
+            <AppBarButton x:Name = "selectGoBack" Grid.Column="0" Label="选择学期" Icon="Back" HorizontalAlignment="Center"  VerticalAlignment="Center" Click="AppBarButton_Click"/>
         </CommandBar>
     </Page.BottomAppBar>
 

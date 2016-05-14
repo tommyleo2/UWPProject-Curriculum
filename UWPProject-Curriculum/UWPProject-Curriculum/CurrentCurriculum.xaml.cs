@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -27,6 +28,7 @@ namespace UWPProject_Curriculum {
         }
         protected override void OnNavigatedTo(NavigationEventArgs e) {
             term = (Term)e.Parameter;
+            Current_Week.Content = "第 " + term.nowWeek.ToString() + " 周";
             var width = 150;
             var height = 100;
             foreach (Course course in term.courseList) {
@@ -76,6 +78,10 @@ namespace UWPProject_Curriculum {
         {
             MenuFlyoutItem item = sender as MenuFlyoutItem;
             int currentWeek = Convert.ToInt32(item.Text.Substring(2, 2));
+
+            var localsetting = ApplicationData.Current.LocalSettings.Values["TheWorkInProgress"] as ApplicationDataCompositeValue;
+            localsetting["nowWeek"] = currentWeek;
+            ApplicationData.Current.LocalSettings.Values["TheWorkInProgress"] = localsetting;
             Current_Week.Content = "第 " + item.Text.Substring(2, 2);
             if (currentWeek > 9) {
                 Current_Week.Content += " 周";
@@ -128,7 +134,11 @@ namespace UWPProject_Curriculum {
         private void Select_Term_After_Delete(IUICommand command)
         {
             term.deleteTerm();
-            Frame.Navigate(typeof(CreateTerm));
+            string str = "semester" + term.grade + term.semester;
+            var composite = ApplicationData.Current.LocalSettings.Values["TheWorkInProgress"] as ApplicationDataCompositeValue;
+            composite[str] = null;
+            ApplicationData.Current.LocalSettings.Values["TheWorkInProgress"] = composite;
+            Frame.Navigate(typeof(SelectTerm));
         }
 
         private Term term { get; set; }

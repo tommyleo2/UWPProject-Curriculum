@@ -86,6 +86,7 @@ namespace UWPProject_Curriculum
                 {
                     composite[ss] = true;
                     composite["recentterm"] = ss;
+                    composite["nowWeek"] = 1;
                     _weekNum = Convert.ToInt32(WeekLast.Text);
                     Term term = new Term(_grade, _semester, _weekNum);
                     ApplicationData.Current.LocalSettings.Values["TheWorkInProgress"] = composite;

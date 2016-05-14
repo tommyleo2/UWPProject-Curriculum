@@ -78,9 +78,9 @@ namespace UWPProject_Curriculum
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    var composite = new ApplicationDataCompositeValue();
                     if (ApplicationData.Current.LocalSettings.Values.ContainsKey("TheWorkInProgress"))
                     {
+                        var composite = ApplicationData.Current.LocalSettings.Values["TheWorkInProgress"] as ApplicationDataCompositeValue;
                         if (composite["recentterm"] == null)
                         {
                             rootFrame.Navigate(typeof(CreateTerm), e.Arguments);
@@ -88,16 +88,17 @@ namespace UWPProject_Curriculum
                         else
                         {
                             string str = (string)composite["recentterm"];
-                            int grade = Convert.ToInt32(str[8]);
-                            int semester = Convert.ToInt32(str[9]);
+                            int grade = Convert.ToInt32(str[8]) - 48;
+                            int semester = Convert.ToInt32(str[9]) - 48;
                             Term term = new Term(grade, semester, 18);
-                            int week = Convert.ToInt32((string)composite["nowWeek"]);
+                            int week = (int)composite["nowWeek"];
                             term.weekNum = week;
                             rootFrame.Navigate(typeof(CurrentCurriculum), term);
                         }
                     }
                     else
                     {
+                        var composite = new ApplicationDataCompositeValue();
                         for (int i = 1; i <= 4; i++)
                         {
                             for (int j = 1; j <= 3; j++)
@@ -107,6 +108,9 @@ namespace UWPProject_Curriculum
                             }
                         }
                         composite["recentterm"] = null;
+                        composite["nowWeek"] = null;
+                        ApplicationData.Current.LocalSettings.Values["TheWorkInProgress"] = composite;
+                        rootFrame.Navigate(typeof(CreateTerm));
                     }
                 }
                 // Ensure the current window is active

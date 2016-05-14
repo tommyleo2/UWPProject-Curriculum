@@ -13,6 +13,7 @@ namespace UWPProject_Curriculum {
             weekNum = _weekNum;
             db = new Database(grade, semester, weekNum);
             courseList = db.selectCourse();
+            nowWeek = 1;
         }
         public void addCourse(Course course) {
             courseList.Add(course);
@@ -24,6 +25,15 @@ namespace UWPProject_Curriculum {
         }
         public void updateCourse(Course course, Course newCourse) {
             db.updateCourse(course, newCourse);
+            courseList = db.selectCourse();
+        }
+        public Course getCourse(Course course) {
+            return db.getCourse(course);
+        }
+        public void refreshCourse() {
+            db.Grade = grade;
+            db.Semester = semester;
+            courseList.Clear();
             courseList = db.selectCourse();
         }
         public int grade { set; get; }
