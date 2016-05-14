@@ -118,7 +118,7 @@ namespace UWPProject_Curriculum
             }
 
 
-            if ((bool)composite[str] == false)
+            if (composite[str] == null)
             {
                 var i = new MessageDialog("该年级当前学期尚未创建，是否跳转到创建页面?");
                 i.Commands.Add(new UICommand("否"));

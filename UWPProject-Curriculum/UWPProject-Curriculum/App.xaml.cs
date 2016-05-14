@@ -77,11 +77,7 @@ namespace UWPProject_Curriculum
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-<<<<<<< HEAD
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
-=======
-                    rootFrame.Navigate(typeof(SelectTerm), e.Arguments);
->>>>>>> 6b890512bd6b68de2a46e897adb9e2590de2f7a3
+                    rootFrame.Navigate(typeof(CreateTerm), e.Arguments);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
